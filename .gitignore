@@ -7,3 +7,4 @@ Domain/obj
 Infrastructure/bin
 Infrastructure/obj
 Api/appsettings.Development.json
+.config

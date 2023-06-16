@@ -10,7 +10,10 @@ namespace Infrastructure.Persistence.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int Id { get; set; }
+        
+        [MaxLength(200)]
         public string NomeCompleto { get; set; }
+        
         public DateTime? DataNascimento { get; set; }
     }
 }

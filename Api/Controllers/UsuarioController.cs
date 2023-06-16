@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Infrastructure.Persistence.Repositories.Interfaces;
 using Infrastructure.Persistence.Entities;
-using Domain.DTOs;
+using Domain.DTOs.Usuario;
 using Microsoft.AspNetCore.Authorization;
 
 namespace Api.Controllers
@@ -49,13 +49,6 @@ namespace Api.Controllers
                 jwtConfig["validIssuer"], jwtConfig["validAudience"], Convert.ToInt32(jwtConfig["expiresIn"]));
 
             return Results.Ok(new { token });
-        }
-
-        [Authorize]
-        [HttpGet("test")]
-        public async Task<IResult> test()
-        {
-            return Results.Ok();
         }
     }
 }

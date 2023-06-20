@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body * {
+  color: var(--preto-texto);
+}
+
+:root {
+  --preto-texto: #222;
+  --cinza-claro-primario: #f3f4f5;
+  --azul-escuro-primario: #3d405b;
+  --cinza-texto: #9b9b9b;
+  --vermelho-erro: #ff3030;
+}
+
+.erroBorda {
+  border: 2px solid var(--vermelho-erro);
+}

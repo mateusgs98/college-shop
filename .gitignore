@@ -8,3 +8,14 @@ Infrastructure/bin
 Infrastructure/obj
 Api/appsettings.Development.json
 .config
+UI/logs
+*.log
+UI/npm-debug.log*
+UI/yarn-debug.log*
+UI/yarn-error.log*
+UI/pnpm-debug.log*
+UI/lerna-debug.log*
+UI/node_modules
+UI/dist
+UI/dist-ssr
+*.local

@@ -50,5 +50,11 @@ namespace Api.Controllers
 
             return Results.Ok(new { token });
         }
+
+        [HttpGet("logoff")]
+        public async Task<IResult> Logoff()
+        {
+            return Results.Ok();
+        }
     }
 }

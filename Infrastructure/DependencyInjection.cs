@@ -20,6 +20,7 @@ namespace Infrastructure
             // services.AddScoped<IApplicationDBContext>(provider => provider.GetService<ApplicationDBContext>());
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
+            services.AddScoped<ICompraRepository, CompraRepository>();
 
             return services;
         }

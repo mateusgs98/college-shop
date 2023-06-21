@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import { AuthProvider } from "../contexts/AuthContext/authContext";
 import Home from "../pages/Home";
 import Registrar from "../pages/Registrar";
+import Login from "../pages/Login";
 
 const RotasApp = () => {
   return (
@@ -16,6 +17,7 @@ const RotasApp = () => {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/registrar" element={<Registrar />} />
+              <Route path="/login" element={<Login />} />
             </Routes>
           </AuthProvider>
         </div>

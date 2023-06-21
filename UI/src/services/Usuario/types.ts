@@ -4,6 +4,11 @@ export type RegistrarUsuarioForm = {
   senha: string;
 };
 
+export type LoginUsuarioForm = {
+  email: string;
+  senha: string;
+};
+
 export type UsuarioCadastrado = {
   value: {
     succeeded: boolean;

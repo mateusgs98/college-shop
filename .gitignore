@@ -19,3 +19,4 @@ UI/node_modules
 UI/dist
 UI/dist-ssr
 *.local
+UI/.env

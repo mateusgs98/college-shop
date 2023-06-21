@@ -57,6 +57,9 @@ builder.Services.ConfigureJWT(builder.Configuration);
 
 builder.Services.AddControllers();
 
+builder.Services.AddCors(p => p.AddDefaultPolicy(policyBuilder =>
+    policyBuilder.WithOrigins("http://localhost:5173").AllowAnyHeader().AllowAnyMethod()));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -67,6 +70,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors();
 
 app.UseAuthentication();
 app.UseAuthorization();

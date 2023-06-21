@@ -3,9 +3,10 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { AuthProvider } from "../contexts/AuthContext/authContext";
+import CadastroProduto from "../pages/CadastroProduto";
 import Home from "../pages/Home";
-import Registrar from "../pages/Registrar";
 import Login from "../pages/Login";
+import Registrar from "../pages/Registrar";
 
 const RotasApp = () => {
   return (
@@ -18,6 +19,7 @@ const RotasApp = () => {
               <Route path="/" element={<Home />} />
               <Route path="/registrar" element={<Registrar />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/cadastro-produto" element={<CadastroProduto />} />
             </Routes>
           </AuthProvider>
         </div>

@@ -20,7 +20,7 @@ export default function Button({ submit, carregando, acao, cor = "azulEscuro", c
         disabled:text-[var(--preto-texto)] hover:brightness-110 border ${
           cor === "azulEscuro"
             ? "text-white bg-[var(--azul-escuro-primario)] border-[var(--azul-escuro-primario)]"
-            : "text-white text[-var(--azul-escuro-primario)] border-black hover:bg-gray-50"
+            : "text[-var(--azul-escuro-primario)] border-black hover:bg-gray-50"
         }`}
       >
         {carregando ? <AiOutlineLoading3Quarters className="animate-spin mx-auto w-5 h-6" /> : children}

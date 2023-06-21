@@ -1,6 +1,6 @@
 import React from "react";
 import { FieldError, UseFormRegister } from "react-hook-form";
-import FormErrorMessage from "../../MensagemErroForm/index";
+import MensagemErroForm from "../../MensagemErroForm/index";
 
 type TextProps = {
   register: UseFormRegister<any>;
@@ -25,13 +25,13 @@ export default function Text({ register, erro, name, placeholder }: TextProps) {
         className="pl-0.5 absolute text-sm text-[var(--cinza-texto)] duration-300 transform 
           -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 text-[#7e7c7c]
           peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0
-          peer-focus:scale-75 peer-focus:-translate-y-4"
+          peer-focus:scale-75 peer-focus:-translate-y-4 cursor-text"
         htmlFor={name}
       >
         {placeholder}
       </label>
 
-      {erro ? <FormErrorMessage erro={erro.message} /> : null}
+      {erro ? <MensagemErroForm erro={erro.message} /> : null}
     </div>
   );
 }

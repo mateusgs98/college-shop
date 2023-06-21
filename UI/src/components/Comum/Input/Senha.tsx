@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { FieldError, UseFormRegister } from "react-hook-form";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import FormErrorMessage from "../../MensagemErroForm";
+import MensagemErroForm from "../../MensagemErroForm";
 
-type TextProps = {
+type SenhaProps = {
   register: UseFormRegister<any>;
   erro?: FieldError;
   name: string;
   placeholder: string;
 };
 
-export default function Senha({ register, erro, name, placeholder }: TextProps) {
+export default function Senha({ register, erro, name, placeholder }: SenhaProps) {
   const [exibirSenha, setExibirSenha] = useState(false);
 
   return (
@@ -28,7 +28,7 @@ export default function Senha({ register, erro, name, placeholder }: TextProps) 
         className="pl-0.5 absolute text-sm text-[var(--cinza-texto)] duration-300 transform 
           -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 text-[#7e7c7c]
           peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0
-          peer-focus:scale-75 peer-focus:-translate-y-4"
+          peer-focus:scale-75 peer-focus:-translate-y-4 cursor-text"
         htmlFor={name}
       >
         {placeholder}
@@ -45,7 +45,7 @@ export default function Senha({ register, erro, name, placeholder }: TextProps) 
           <AiFillEye className="w-5 h-5 text-[var(--cinza-texto)]" />
         )}
       </button>
-      {erro ? <FormErrorMessage erro={erro.message} /> : null}
+      {erro ? <MensagemErroForm erro={erro.message} /> : null}
     </div>
   );
 }

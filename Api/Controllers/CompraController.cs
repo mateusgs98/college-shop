@@ -8,7 +8,7 @@ namespace Api.Controllers
 {
     [ApiController]
     [Route("api/compra")]
-    [Authorize]
+    [AllowAnonymous]
     public class CompraController : ControllerBase
     {
         private readonly ICompraRepository _compraRepository;

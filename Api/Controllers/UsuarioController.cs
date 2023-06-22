@@ -48,7 +48,9 @@ namespace Api.Controllers
             var token = await _usuarioRepository.GerarTokenAutenticacao(usuario.Email, jwtConfig["secret"], 
                 jwtConfig["validIssuer"], jwtConfig["validAudience"], Convert.ToInt32(jwtConfig["expiresIn"]));
 
-            return Results.Ok(new { token });
+            var usuarioLogado = _usuarioRepository.ObterPorEmail(usuario.Email);
+
+            return Results.Ok(new { token, idUsuario = usuarioLogado.Id });
         }
 
         [HttpGet("logoff")]

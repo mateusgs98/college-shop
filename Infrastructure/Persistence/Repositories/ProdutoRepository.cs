@@ -50,13 +50,15 @@ namespace Infrastructure.Persistence.Repositories
         public async Task<List<Produto>> ObterPorUsuario(int idUsuario)
         {
             return await _context.Produtos.Where(p => 
-                p.IdUsuario == idUsuario && p.DataExclusao == null).ToListAsync();
+                p.IdUsuario == idUsuario && p.DataExclusao == null)
+                .OrderBy(p => p.Nome).ToListAsync();
         }
 
-        public async Task<List<Produto>> ObterTodos()
+        public async Task<List<List<Produto>>> ObterTodos()
         {
             return await _context.Produtos.Where(p =>
-                p.DataExclusao == null).ToListAsync();
+                p.DataExclusao == null)
+                .GroupBy(p => p.Categoria).Select(p => p.OrderBy(p => p.Nome).ToList()).ToListAsync();
         }
 
         public async Task<Produto> ObterPorId(int idProduto)

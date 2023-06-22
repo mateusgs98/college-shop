@@ -8,7 +8,7 @@ namespace Infrastructure.Persistence.Repositories.Interfaces
         Task<Produto> Editar(Produto produto);
         Task Excluir(int idProduto);
         Task<List<Produto>> ObterPorUsuario(int idUsuario);
-        Task<List<Produto>> ObterTodos();
+        Task<List<List<Produto>>> ObterTodos();
         Task<Produto> ObterPorId(int idProduto);
     }
 }

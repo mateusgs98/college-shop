@@ -5,16 +5,19 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence.Repositories
 {
     public class UsuarioRepository : IUsuarioRepository
     {
         private readonly UserManager<Usuario> _userManager;
+        private readonly ApplicationDBContext _context;
 
-        public UsuarioRepository(UserManager<Usuario> userManager)
+        public UsuarioRepository(UserManager<Usuario> userManager, ApplicationDBContext context)
         {
             _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
+            _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
         public async Task<IdentityResult> Cadastrar(Usuario usuario, string senha)
@@ -38,6 +41,11 @@ namespace Infrastructure.Persistence.Repositories
             var tokenOptions = GenerateTokenOptions(signingCredentials, claims, validIssuer, validAudience, expiresIn);
 
             return new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+        }
+
+        public async Task<Usuario> ObterPorEmail(string email)
+        {
+            return await _context.Usuarios.Where(u => u.Email == email).FirstOrDefaultAsync();
         }
 
         private SigningCredentials GetSigningCredentials(string secretKey)

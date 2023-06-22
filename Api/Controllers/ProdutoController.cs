@@ -33,6 +33,7 @@ namespace Api.Controllers
         }
 
         [HttpGet("obterPorId/{idProduto}")]
+        [AllowAnonymous]
         public async Task<IResult> ObterPorId([FromRoute]int idProduto)
         {
             var produto = await _produtoRepository.ObterPorId(idProduto);
@@ -53,15 +54,16 @@ namespace Api.Controllers
         }
 
         [HttpGet("obterTodos")]
+        [AllowAnonymous]
         public async Task<IResult> ObterTodos()
         {
             var produtos = await _produtoRepository.ObterTodos();
-            var produtosDto = produtos.Select(p => new PesquisarProduto
+            var produtosDto = produtos.Select(pa => pa.Select(p => new PesquisarProduto
             {
                 Imagem = p.Imagem,
                 Nome = p.Nome,
                 Valor = p.Valor
-            }).ToList();
+            }).ToList()).ToList();
 
             return Results.Ok(produtosDto);
         }

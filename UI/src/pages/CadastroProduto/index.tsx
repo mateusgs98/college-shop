@@ -1,6 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import { z } from "zod";
 import CardForm from "../../components/Cards/CardForm";
 import Button from "../../components/Comum/Button";
@@ -16,9 +17,19 @@ export default function CadastroProduto() {
     nome: z.string().min(1, "Obrigatório"),
     categoria: z.string().min(1, "Obrigatório"),
     fabricante: z.string().min(1, "Obrigatório"),
-    valor: z.string({ required_error: "Obrigatório" }).min(1, "Obrigatório"),
+    valor: z
+      .string({ required_error: "Obrigatório" })
+      .min(1, "Obrigatório")
+      .refine((val) => val.split("").length !== 1, {
+        message: "Obrigatório",
+      }),
     descricao: z.string().min(1, "Obrigatório"),
-    qtdDisponivel: z.string({ required_error: "Obrigatório" }).min(1, "Obrigatório"),
+    qtdDisponivel: z
+      .string({ required_error: "Obrigatório" })
+      .min(1, "Obrigatório")
+      .refine((val) => val.split("").length !== 1, {
+        message: "Obrigatório",
+      }),
   });
 
   const {
@@ -64,7 +75,9 @@ export default function CadastroProduto() {
           />
         </div>
         <div className="flex flex-col-reverse sm:flex-row gap-x-5 gap-y-3 mt-5 md:mt-20 md:max-w-xs mx-auto lg:ml-auto lg:mr-0">
-          <Button cor="branco">Voltar</Button>
+          <Button cor="branco">
+            <Link to="/">Voltar</Link>
+          </Button>
           <Button submit>Salvar</Button>
         </div>
       </form>

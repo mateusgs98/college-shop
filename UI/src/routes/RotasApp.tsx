@@ -6,12 +6,13 @@ import { AuthProvider } from "../contexts/AuthContext/authContext";
 import CadastroProduto from "../pages/CadastroProduto";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
+import RealizarCompra from "../pages/RealizarCompra";
 import Registrar from "../pages/Registrar";
 
 const RotasApp = () => {
   return (
     <BrowserRouter>
-      <div className="flex flex-col min-h-screen justify-between">
+      <div className="relative flex flex-col min-h-screen justify-between">
         <Header />
         <div className="flex-1">
           <AuthProvider>
@@ -20,6 +21,7 @@ const RotasApp = () => {
               <Route path="/registrar" element={<Registrar />} />
               <Route path="/login" element={<Login />} />
               <Route path="/cadastro-produto" element={<CadastroProduto />} />
+              <Route path="/realizar-compra" element={<RealizarCompra />} />
             </Routes>
           </AuthProvider>
         </div>

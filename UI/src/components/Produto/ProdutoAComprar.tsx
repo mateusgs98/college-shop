@@ -1,4 +1,5 @@
 import React from "react";
+import { formatadorMonetario } from "../../helpers/monetario/formatadorMonetario";
 
 type ProdutoAComprarProps = {
   imagem: string;
@@ -8,11 +9,6 @@ type ProdutoAComprarProps = {
 };
 
 export default function ProdutoAComprar({ imagem, nome, preco, quantidade }: ProdutoAComprarProps) {
-  const formatadorMonetario = new Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  });
-
   return (
     <div>
       <div className="flex gap-2">

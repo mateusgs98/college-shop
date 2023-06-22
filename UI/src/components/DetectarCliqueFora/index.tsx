@@ -33,7 +33,8 @@ const DetectarCliqueFora = ({ children, onClicarFora, refElemento, esconderAoCli
     };
   }, [refElemento]);
 
-  return children;
+  // eslint-disable-next-line react/jsx-no-useless-fragment
+  return <>{children}</>;
 };
 
 export default DetectarCliqueFora;

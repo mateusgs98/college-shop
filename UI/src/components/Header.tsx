@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { BiLogOut } from "react-icons/bi";
+import { ProdutoResposta } from "../services/Produto/types";
 import SidebarCarrinho from "./SidebarCarrinho";
 
-const Header = () => {
+type HeaderProps = {
+  produtosCarrinho: ProdutoResposta | null;
+};
+
+const Header = ({ produtosCarrinho }: HeaderProps) => {
   const [sidebarCarrinhoAberta, setSidebarCarrinhoAberta] = useState(false);
 
   return (
@@ -19,7 +24,11 @@ const Header = () => {
           </button>
         </div>
       </div>
-      <SidebarCarrinho sidebarAberta={sidebarCarrinhoAberta} setSidebarAberta={setSidebarCarrinhoAberta} />
+      <SidebarCarrinho
+        produtoCarrinho={produtosCarrinho}
+        sidebarAberta={sidebarCarrinhoAberta}
+        setSidebarAberta={setSidebarCarrinhoAberta}
+      />
     </>
   );
 };

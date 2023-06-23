@@ -30,12 +30,7 @@ export default function CadastroProduto() {
         message: "Obrigatório",
       }),
     descricao: z.string().min(1, "Obrigatório"),
-    qtdDisponivel: z
-      .string({ required_error: "Obrigatório" })
-      .min(1, "Obrigatório")
-      .refine((val) => val.split("").length !== 1, {
-        message: "Obrigatório",
-      }),
+    qtdDisponivel: z.string({ required_error: "Obrigatório" }).min(1, "Obrigatório"),
   });
 
   const {
@@ -114,10 +109,12 @@ export default function CadastroProduto() {
           />
         </div>
         <div className="flex flex-col-reverse sm:flex-row gap-x-5 gap-y-3 mt-5 md:mt-20 md:max-w-xs mx-auto lg:ml-auto lg:mr-0">
-          <Button cor="branco">
-            <Link to="/">Voltar</Link>
+          <Link to="/meus-produtos" className="w-full">
+            <Button cor="branco">Voltar</Button>
+          </Link>
+          <Button submit carregando={mutation.isLoading}>
+            Salvar
           </Button>
-          <Button submit>Salvar</Button>
         </div>
       </form>
     </CardForm>

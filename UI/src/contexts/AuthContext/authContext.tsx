@@ -58,7 +58,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       API.defaults.headers.common.Authorization = `Bearer ${data.value.token}`;
       setTokenAcesso(data.value.token);
       setIdUsuario(data.value.idUsuario);
-      navigate("/");
+      navigate("/meus-produtos");
     } catch (e) {
       const err = e as AxiosError<any>;
       const errorMsg =

@@ -6,6 +6,7 @@ import { AuthProvider } from "../contexts/AuthContext/authContext";
 import CadastroProduto from "../pages/CadastroProduto";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
+import MeusProdutos from "../pages/MeusProdutos";
 import ProdutoEspecifico from "../pages/ProdutoEspecifico";
 import RealizarCompra from "../pages/RealizarCompra";
 import Registrar from "../pages/Registrar";
@@ -27,6 +28,7 @@ const RotasApp = () => {
               <Route path="/cadastro-produto" element={<CadastroProduto />} />
               <Route path="/realizar-compra" element={<RealizarCompra />} />
               <Route path="/produto/:id" element={<ProdutoEspecifico setProdutoCarrinho={setProdutosCarrinho} />} />
+              <Route path="/meus-produtos" element={<MeusProdutos />} />
             </Routes>
           </div>
           <Footer />

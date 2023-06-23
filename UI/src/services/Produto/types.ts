@@ -8,6 +8,17 @@ export type CadastroProdutoForm = {
   qtdDisponivel: string;
 };
 
+type ProdutoUsuario = {
+  imagem: string;
+  nome: string;
+  valor: number;
+};
+
+export type ProdutoUsuarioResposta = {
+  value: ProdutoUsuario[];
+  statusCode: number;
+};
+
 type CadastroProdutoRequisicao = {
   imagem: string;
   nome: string;

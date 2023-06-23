@@ -13,7 +13,7 @@ export default function ProdutoAComprar({ imagem, nome, preco, quantidade }: Pro
     <div>
       <div className="flex gap-2">
         <img src={imagem} className="w-36" alt="Imagem produto" />
-        <div className="flex flex-col">
+        <div className="flex flex-col mt-8">
           <span className="font-medium text-xl">{nome}</span>
           <span>{formatadorMonetario.format(preco)}</span>
           <span>Qtd: {quantidade}</span>

@@ -60,9 +60,11 @@ namespace Api.Controllers
             var produtos = await _produtoRepository.ObterTodos();
             var produtosDto = produtos.Select(pa => pa.Select(p => new PesquisarProduto
             {
+                Id = p.Id,
                 Imagem = p.Imagem,
                 Nome = p.Nome,
-                Valor = p.Valor
+                Valor = p.Valor,
+                Categoria = p.Categoria
             }).ToList()).ToList();
 
             return Results.Ok(produtosDto);

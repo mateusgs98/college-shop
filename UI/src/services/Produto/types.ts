@@ -12,10 +12,17 @@ type ProdutoUsuario = {
   imagem: string;
   nome: string;
   valor: number;
+  categoria?: string;
+  id?: number;
 };
 
 export type ProdutoUsuarioResposta = {
   value: ProdutoUsuario[];
+  statusCode: number;
+};
+
+export type TodosProdutosResposta = {
+  value: ProdutoUsuario[][];
   statusCode: number;
 };
 

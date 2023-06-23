@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-no-bind */
 import { useQuery } from "@tanstack/react-query";
 import React, { Dispatch, SetStateAction } from "react";
+import toast from "react-hot-toast";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
@@ -32,6 +33,9 @@ export default function ProdutoEspecifico({ setProdutoCarrinho }: ProdutoEspecif
   function adicionarAoCarrinho() {
     if (produto) {
       setProdutoCarrinho(produto);
+      toast.success("Produto adicionado ao carrinho!", {
+        position: "top-center",
+      });
     }
   }
 

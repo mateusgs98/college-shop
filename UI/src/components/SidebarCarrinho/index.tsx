@@ -1,5 +1,7 @@
+/* eslint-disable react/jsx-no-bind */
 import React, { Dispatch, SetStateAction, useRef } from "react";
 import { AiOutlineClose } from "react-icons/ai";
+import { useNavigate } from "react-router";
 import { ProdutoResposta } from "../../services/Produto/types";
 import Button from "../Comum/Button";
 import DetectarCliqueFora from "../DetectarCliqueFora";
@@ -13,6 +15,20 @@ type SidebarCarrinhoProps = {
 
 export default function SidebarCarrinho({ produtoCarrinho, sidebarAberta, setSidebarAberta }: SidebarCarrinhoProps) {
   const refSidebarCarrinho = useRef<HTMLElement | null>(null);
+  const navigate = useNavigate();
+
+  function comprarProduto() {
+    setSidebarAberta(false);
+    navigate("/realizar-compra", {
+      state: {
+        idProduto: produtoCarrinho?.id,
+        imagem: produtoCarrinho?.imagem,
+        nome: produtoCarrinho?.nome,
+        preco: produtoCarrinho?.valor,
+        quantidade: 1,
+      },
+    });
+  }
 
   return (
     <>
@@ -42,7 +58,7 @@ export default function SidebarCarrinho({ produtoCarrinho, sidebarAberta, setSid
                 </div>
               </div>
               <div className="flex flex-col gap-5">
-                <Button>Comprar</Button>
+                <Button acao={comprarProduto}>Comprar</Button>
                 <Button cor="branco" acao={() => setSidebarAberta(false)}>
                   Voltar
                 </Button>

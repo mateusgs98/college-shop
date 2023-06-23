@@ -1,7 +1,9 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { z } from "zod";
 import CardForm from "../../components/Cards/CardForm";
 import Button from "../../components/Comum/Button";
@@ -12,11 +14,15 @@ import NumeroCartao from "../../components/Comum/Input/NumeroCartao";
 import Telefone from "../../components/Comum/Input/Telefone";
 import Text from "../../components/Comum/Input/Text";
 import ProdutoAComprar from "../../components/Produto/ProdutoAComprar";
-import { CompraProdutoForm } from "../../services/Compra";
+import { realizarCompra } from "../../services/Compra";
+import { CompraProdutoForm } from "../../services/Compra/types";
 
 export default function RealizarCompra() {
+  const navigate = useNavigate();
+  const { state } = useLocation();
+
   const schema = z.object({
-    idProduto: z.string().min(1, "Obrigatório"),
+    idProduto: z.number(),
     nome: z.string().min(1, "Obrigatório"),
     cpf: z
       .string({ required_error: "Obrigatório" })
@@ -52,6 +58,10 @@ export default function RealizarCompra() {
       }),
   });
 
+  const defaultValues = {
+    idProduto: state.idProduto,
+  };
+
   const {
     register,
     handleSubmit,
@@ -60,19 +70,28 @@ export default function RealizarCompra() {
   } = useForm<CompraProdutoForm>({
     mode: "onBlur",
     resolver: zodResolver(schema),
+    defaultValues,
+  });
+
+  const mutation = useMutation({
+    mutationFn: realizarCompra,
+    onSuccess: () => {
+      toast.success("Compra realizada com sucesso!");
+      navigate("/");
+    },
   });
 
   const handleEnvioForm = handleSubmit(async (dadosForm: CompraProdutoForm) => {
-    //
+    mutation.mutateAsync(dadosForm);
   });
 
   return (
     <div className="flex flex-col items-center md:items-start md:flex-row gap-8">
       <div className="mt-5 mb-[-32px] md:mb-0 md:mt-10 lg:mt-20">
         <ProdutoAComprar
-          imagem="https://images-americanas.b2w.io/produtos/01/00/item/6732/3/6732326_1GG.jpg"
-          nome="Livro de Cálculo"
-          preco={49.9}
+          imagem={`data:image/png;base64, ${state.imagem}`}
+          nome={state.nome}
+          preco={state.preco as number}
           quantidade={1}
         />
       </div>
@@ -109,7 +128,7 @@ export default function RealizarCompra() {
                   Voltar
                 </Link>
               </Button>
-              <Button submit>
+              <Button submit carregando={mutation.isLoading} className="min-w-[135px]">
                 <span className="px-4 text-white">Comprar</span>
               </Button>
             </div>

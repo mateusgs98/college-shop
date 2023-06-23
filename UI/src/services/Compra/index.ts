@@ -1,11 +1,6 @@
-export type CompraProdutoForm = {
-  idProduto: number;
-  nome: string;
-  cpf: string;
-  telefone: string;
-  endereco: string;
-  email: string;
-  numeroCartao: string;
-  dataValidadeCartao: string;
-  cvv: string;
-};
+import { API } from "../API";
+import { CompraProdutoForm } from "./types";
+
+export function realizarCompra(compra: CompraProdutoForm) {
+  return API.post("/compra/realizarCompra", compra);
+}

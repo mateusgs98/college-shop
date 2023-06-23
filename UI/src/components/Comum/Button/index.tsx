@@ -6,10 +6,11 @@ type ButtonProps = {
   carregando?: boolean;
   acao?: (...params: (number | object | string)[]) => void;
   cor?: "azulEscuro" | "branco";
+  className?: string;
   children: React.ReactNode;
 };
 
-export default function Button({ submit, carregando, acao, cor = "azulEscuro", children }: ButtonProps) {
+export default function Button({ submit, carregando, acao, cor = "azulEscuro", className, children }: ButtonProps) {
   return (
     <div className="w-full">
       <button
@@ -21,7 +22,7 @@ export default function Button({ submit, carregando, acao, cor = "azulEscuro", c
           cor === "azulEscuro"
             ? "text-white bg-[var(--azul-escuro-primario)] border-[var(--azul-escuro-primario)]"
             : "text[-var(--azul-escuro-primario)] border-black hover:bg-gray-50"
-        }`}
+        } ${className}`}
       >
         {carregando ? <AiOutlineLoading3Quarters className="animate-spin mx-auto w-5 h-6" /> : children}
       </button>

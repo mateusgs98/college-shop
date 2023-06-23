@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { AuthProvider } from "../contexts/AuthContext/authContext";
 import CadastroProduto from "../pages/CadastroProduto";
-import Home from "../pages/Home";
+import ListagemProdutos from "../pages/ListagemProdutos";
 import Login from "../pages/Login";
 import MeusProdutos from "../pages/MeusProdutos";
 import ProdutoEspecifico from "../pages/ProdutoEspecifico";
@@ -22,7 +22,7 @@ const RotasApp = () => {
           <Header produtosCarrinho={produtosCarrinho} />
           <div className="flex-1">
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<ListagemProdutos />} />
               <Route path="/registrar" element={<Registrar />} />
               <Route path="/login" element={<Login />} />
               <Route path="/cadastro-produto" element={<CadastroProduto />} />

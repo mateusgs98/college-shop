@@ -40,8 +40,8 @@ export default function MeusProdutos() {
               <span className="font-bold text-xl">{produto.nome}</span>
               <span>{formatadorMonetario.format(produto.valor)}</span>
               <div className="flex gap-2 absolute top-1 right-1">
-                <AiOutlineEdit className="w-5 h-5 cursor-pointer hover:brightness-120" />
-                <AiOutlineDelete className="w-5 h-5 cursor-pointer hover:brightness-120" />
+                <AiOutlineEdit className="w-5 h-5 cursor-pointer hover:brightness-120" title="Editar Produto" />
+                <AiOutlineDelete className="w-5 h-5 cursor-pointer hover:brightness-120" title="Excluir Produto" />
               </div>
             </div>
           ))}

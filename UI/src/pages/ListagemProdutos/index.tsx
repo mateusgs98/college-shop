@@ -13,7 +13,9 @@ export default function ListagemProdutos() {
     queryFn: obterTodosProdutos,
   });
 
-  const produtosFiltrados = todosProdutos?.value.filter((categoria) => categoria[0].nome?.includes(buscaProdutos));
+  const produtosFiltrados = todosProdutos?.value.filter((categoria) =>
+    categoria[0].nome.toLowerCase()?.includes(buscaProdutos.toLowerCase())
+  );
 
   return (
     <div className="px-10 py-6">
@@ -41,7 +43,7 @@ export default function ListagemProdutos() {
           <div className="grid grid-cols-3 gap-x-10 mb-10 justify-items-center">
             {categoria.map((produto) => (
               <Link to={`produto/${produto.id}`} key={produto.id}>
-                <div className="rounded-lg shadow-xl border-2 border-black flex flex-col items-center justify-center w-[300px] h-fit py-5">
+                <div className="rounded-lg shadow-xl border-2 border-black flex flex-col items-center justify-center w-[300px] h-fit p-5">
                   <img src={`data:image/png;base64, ${produto.imagem}`} alt="imagem produto" className="w-24 mb-2" />
                   <h2 className="font-bold text-2xl">{produto.nome}</h2>
                   <span className="text-lg">{formatadorMonetario.format(produto.valor)}</span>

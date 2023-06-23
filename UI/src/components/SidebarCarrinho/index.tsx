@@ -1,7 +1,9 @@
 /* eslint-disable react/jsx-no-bind */
-import React, { Dispatch, SetStateAction, useRef } from "react";
+import React, { Dispatch, SetStateAction, useContext, useRef } from "react";
+import toast from "react-hot-toast";
 import { AiOutlineClose } from "react-icons/ai";
 import { useNavigate } from "react-router";
+import { AuthContext } from "../../contexts/AuthContext/authContext";
 import { ProdutoResposta } from "../../services/Produto/types";
 import Button from "../Comum/Button";
 import DetectarCliqueFora from "../DetectarCliqueFora";
@@ -14,10 +16,16 @@ type SidebarCarrinhoProps = {
 };
 
 export default function SidebarCarrinho({ produtoCarrinho, sidebarAberta, setSidebarAberta }: SidebarCarrinhoProps) {
+  const { autenticado } = useContext(AuthContext);
   const refSidebarCarrinho = useRef<HTMLElement | null>(null);
   const navigate = useNavigate();
 
   function comprarProduto() {
+    if (!autenticado) {
+      toast.error("É necessário fazer login para realizar a compra");
+      navigate("/login");
+      return;
+    }
     setSidebarAberta(false);
     navigate("/realizar-compra", {
       state: {
@@ -50,7 +58,7 @@ export default function SidebarCarrinho({ produtoCarrinho, sidebarAberta, setSid
                       imagem={produtoCarrinho?.imagem}
                       nome={produtoCarrinho?.nome}
                       preco={produtoCarrinho?.valor}
-                      quantidade={produtoCarrinho?.qtdDisponivel}
+                      quantidade={1}
                     />
                   ) : (
                     <span className="text-xl text-center">Não há produtos no carrinho</span>
@@ -58,7 +66,13 @@ export default function SidebarCarrinho({ produtoCarrinho, sidebarAberta, setSid
                 </div>
               </div>
               <div className="flex flex-col gap-5">
-                <Button acao={comprarProduto}>Comprar</Button>
+                <Button
+                  acao={comprarProduto}
+                  disabled={!produtoCarrinho}
+                  disabledTitle="Faça login para realizar a compra"
+                >
+                  Comprar
+                </Button>
                 <Button cor="branco" acao={() => setSidebarAberta(false)}>
                   Voltar
                 </Button>

@@ -55,9 +55,11 @@ export default function ProdutoEspecifico({ setProdutoCarrinho }: ProdutoEspecif
       )}
       {!isLoading && !isError && (
         <>
-          <h2 className="text-4xl font-bold mb-5">{produto?.nome}</h2>
-          <span className="text-2xl">Categoria: {produto?.categoria}</span>
-          <div className="flex justify-between mt-20">
+          <div className="px-8">
+            <h2 className="text-4xl font-bold mb-5 mt-16">{produto?.nome}</h2>
+            <span className="text-2xl">Categoria: {produto?.categoria}</span>
+          </div>
+          <div className="flex justify-between items-center mt-32">
             <img src={`data:image/png;base64, ${produto?.imagem}`} alt="imagem produto" className="w-56" />
             <div className="flex flex-col gap-7">
               <span className="text-3xl max-w-sm">{produto?.descricao}</span>
@@ -66,9 +68,9 @@ export default function ProdutoEspecifico({ setProdutoCarrinho }: ProdutoEspecif
             </div>
             <div className="flex flex-col justify-center gap-5">
               <Button acao={adicionarAoCarrinho}>Adicionar ao Carrinho</Button>
-              <Button cor="branco">
-                <Link to="/">Voltar para a Pesquisa</Link>
-              </Button>
+              <Link to="/">
+                <Button cor="branco">Voltar para a Pesquisa</Button>
+              </Link>
             </div>
           </div>
         </>

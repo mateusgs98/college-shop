@@ -50,9 +50,9 @@ export default function Login() {
           <Button submit carregando={isLoading}>
             Entrar
           </Button>
-          <Button cor="branco">
-            <Link to="/registrar">Criar Conta</Link>
-          </Button>
+          <Link to="/registrar">
+            <Button cor="branco">Criar Conta</Button>
+          </Link>
         </div>
       </form>
     </CardForm>

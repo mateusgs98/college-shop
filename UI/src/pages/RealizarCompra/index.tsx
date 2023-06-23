@@ -86,8 +86,8 @@ export default function RealizarCompra() {
   });
 
   return (
-    <div className="flex flex-col items-center md:items-start md:flex-row gap-8">
-      <div className="mt-5 mb-[-32px] md:mb-0 md:mt-10 lg:mt-20">
+    <div className="grid grid-cols-5 items-center justify-center md:items-start md:flex-row gap-8">
+      <div className="mt-44 h-full px-5">
         <ProdutoAComprar
           imagem={`data:image/png;base64, ${state.imagem}`}
           nome={state.nome}
@@ -95,7 +95,7 @@ export default function RealizarCompra() {
           quantidade={1}
         />
       </div>
-      <div className="px-8 flex-1">
+      <div className="px-8 col-span-4">
         <CardForm titulo="Realizar Compra" centralizarTitulo={false} className="w-full">
           <form onSubmit={handleEnvioForm} className="mt-7">
             <div className="flex flex-col lg:flex-row gap-7 lg:gap-14">

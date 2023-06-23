@@ -72,7 +72,7 @@ export default function CadastroProduto() {
 
   const handleEnvioForm = handleSubmit(async (dadosForm: CadastroProdutoForm) => {
     const imagemBase64 = await converterImagemParaBase64(dadosForm.imagem[0]);
-    const imagemBase64Formatada = imagemBase64.split("data:image/png;base64,")[1];
+    const imagemBase64Formatada = imagemBase64.split(`data:${dadosForm.imagem[0].type};base64,`)[1];
     mutation.mutateAsync({
       ...dadosForm,
       imagem: imagemBase64Formatada,

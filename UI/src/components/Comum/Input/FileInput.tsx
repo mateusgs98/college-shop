@@ -17,7 +17,7 @@ export default function FileInput({ register, watch, setValue, erro, name, place
     <div>
       {!watch(name) || watch(name).length === 0 ? (
         <div>
-          <input type="file" id={name} accept=".png, .jpeg, .jpg" {...register(name)} className="hidden" />
+          <input type="file" id={name} {...register(name)} className="hidden" />
           <label
             htmlFor={name}
             className={`block md:inline text-center md:text-left cursor-pointer px-5 py-2 rounded-full 

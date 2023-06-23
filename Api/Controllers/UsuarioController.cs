@@ -41,16 +41,14 @@ namespace Api.Controllers
         public async Task<IResult> Login([FromBody]LoginUsuario usuario)
         {
             var usuarioValidado = await _usuarioRepository.ValidarUsuario(usuario.Email, usuario.Senha);
-            if (!usuarioValidado)
+            if (usuarioValidado == null)
                 return Results.Unauthorized();
 
             var jwtConfig = _configuration.GetSection("JwtConfig");
             var token = await _usuarioRepository.GerarTokenAutenticacao(usuario.Email, jwtConfig["secret"], 
                 jwtConfig["validIssuer"], jwtConfig["validAudience"], Convert.ToInt32(jwtConfig["expiresIn"]));
 
-            var usuarioLogado = _usuarioRepository.ObterPorEmail(usuario.Email);
-
-            return Results.Ok(new { token, idUsuario = usuarioLogado.Id });
+            return Results.Ok(new { token, idUsuario = usuarioValidado.Id });
         }
 
         [HttpGet("logoff")]

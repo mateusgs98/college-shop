@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence.Repositories
@@ -25,11 +26,14 @@ namespace Infrastructure.Persistence.Repositories
             return await _userManager.CreateAsync(usuario, senha);
         }
 
-        public async Task<bool> ValidarUsuario(string email, string senha)
+        public async Task<Usuario> ValidarUsuario(string email, string senha)
         {
             var usuario = await _userManager.FindByNameAsync(email);
-            
-            return usuario != null && await _userManager.CheckPasswordAsync(usuario, senha);
+            var resultadoValidacao = await _userManager.CheckPasswordAsync(usuario, senha);
+            if (!resultadoValidacao)
+                return null;
+
+            return usuario;
         }
 
         public async Task<string> GerarTokenAutenticacao(string email, string secretKey, string validIssuer, string validAudience, int expiresIn)
@@ -45,7 +49,9 @@ namespace Infrastructure.Persistence.Repositories
 
         public async Task<Usuario> ObterPorEmail(string email)
         {
-            return await _context.Usuarios.Where(u => u.Email == email).FirstOrDefaultAsync();
+            var query = await _context.Usuarios.Where(u => u.Email == email).ToListAsync();
+
+            return query.FirstOrDefault();
         }
 
         private SigningCredentials GetSigningCredentials(string secretKey)

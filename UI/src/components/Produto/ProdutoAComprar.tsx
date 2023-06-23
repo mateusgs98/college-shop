@@ -10,7 +10,7 @@ type ProdutoAComprarProps = {
 
 export default function ProdutoAComprar({ imagem, nome, preco, quantidade }: ProdutoAComprarProps) {
   return (
-    <div className="flex gap-2">
+    <div className="flex gap-5">
       <img src={imagem} className="w-36" alt="Imagem produto" />
       <div className="flex flex-col mt-8">
         <span className="font-medium text-xl">{nome}</span>

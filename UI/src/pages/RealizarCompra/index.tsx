@@ -77,7 +77,7 @@ export default function RealizarCompra() {
     mutationFn: realizarCompra,
     onSuccess: () => {
       toast.success("Compra realizada com sucesso!");
-      navigate("/");
+      navigate(`/acompanhar-pedido/${state.idProduto}`);
     },
   });
 
@@ -87,7 +87,7 @@ export default function RealizarCompra() {
 
   return (
     <div className="grid grid-cols-5 items-center justify-center md:items-start md:flex-row gap-8">
-      <div className="mt-44 h-full px-5">
+      <div className="mt-44 px-5">
         <ProdutoAComprar
           imagem={`data:image/png;base64, ${state.imagem}`}
           nome={state.nome}

@@ -12,7 +12,11 @@ export default function ProdutoCarrinho({ imagem, nome, preco, quantidade }: Pro
   return (
     <div>
       <div className="flex gap-5">
-        <img src={`data:image/png;base64, ${imagem}`} className="w-24" alt="Imagem produto" />
+        <img
+          src={`data:image/png;base64, ${imagem}`}
+          className="w-24 aspect-square object-contain"
+          alt="Imagem produto"
+        />
         <div className="flex flex-col gap-y-2">
           <span className="font-bold text-2xl">{nome}</span>
           <span className="text-xl">{formatadorMonetario.format(preco as number)}</span>

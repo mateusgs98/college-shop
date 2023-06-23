@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { AuthProvider } from "../contexts/AuthContext/authContext";
+import AcompanharPedido from "../pages/AcompanharPedido";
 import CadastroProduto from "../pages/CadastroProduto";
 import ListagemProdutos from "../pages/ListagemProdutos";
 import Login from "../pages/Login";
@@ -28,6 +29,7 @@ const RotasApp = () => {
               <Route path="/cadastro-produto" element={<CadastroProduto />} />
               <Route path="/realizar-compra" element={<RealizarCompra />} />
               <Route path="/produto/:id" element={<ProdutoEspecifico setProdutoCarrinho={setProdutosCarrinho} />} />
+              <Route path="/acompanhar-pedido/:id" element={<AcompanharPedido />} />
               <Route path="/meus-produtos" element={<MeusProdutos />} />
             </Routes>
           </div>

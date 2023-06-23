@@ -59,7 +59,7 @@ export default function CadastroProduto() {
       navigate("/meus-produtos");
     },
     onError: () => {
-      toast.error("Não foi possível obter os produtos, tente novamente.");
+      toast.error("Não foi possível cadastrar o produto, tente novamente.");
     },
   });
 

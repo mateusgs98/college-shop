@@ -36,7 +36,11 @@ export default function MeusProdutos() {
               key={`${produto.nome}-${produto.valor}`}
               className="relative w-[250px] flex flex-col items-center px-8 py-3 border-2 border-black shadow-lg rounded-lg"
             >
-              <img src={`data:image/png;base64, ${produto.imagem}`} alt="imagem produto" className="w-24" />
+              <img
+                src={`data:image/png;base64, ${produto.imagem}`}
+                alt="imagem produto"
+                className="w-32 h-32 aspect-square object-contain mix-blend-color-burn my-2"
+              />
               <span className="font-bold text-xl">{produto.nome}</span>
               <span>{formatadorMonetario.format(produto.valor)}</span>
               <div className="flex gap-2 absolute top-1 right-1">

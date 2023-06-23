@@ -3,10 +3,11 @@ import { useMutation } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { z } from "zod";
 import CardForm from "../../components/Cards/CardForm";
 import Button from "../../components/Comum/Button";
+import Dinheiro from "../../components/Comum/Input/Dinheiro";
 import FileInput from "../../components/Comum/Input/FileInput";
 import NumberInput from "../../components/Comum/Input/NumberInput";
 import Text from "../../components/Comum/Input/Text";
@@ -16,6 +17,7 @@ import { cadastrarProduto } from "../../services/Produto";
 import { CadastroProdutoForm } from "../../services/Produto/types";
 
 export default function CadastroProduto() {
+  const navigate = useNavigate();
   const { idUsuario } = useContext(AuthContext);
 
   const schema = z.object({
@@ -39,7 +41,6 @@ export default function CadastroProduto() {
     watch,
     setValue,
     control,
-    reset,
     formState: { errors },
   } = useForm<CadastroProdutoForm>({
     mode: "onBlur",
@@ -55,15 +56,7 @@ export default function CadastroProduto() {
       }
 
       toast.success("Produto cadastrado com sucesso!");
-      reset({
-        categoria: "",
-        descricao: "",
-        fabricante: "",
-        imagem: undefined,
-        nome: "",
-        qtdDisponivel: "",
-        valor: "",
-      });
+      navigate("/meus-produtos");
     },
     onError: () => {
       toast.error("Não foi possível obter os produtos, tente novamente.");
@@ -99,7 +92,7 @@ export default function CadastroProduto() {
           <Text name="nome" register={register} placeholder="Nome" erro={errors.nome} />
           <Text name="categoria" register={register} placeholder="Categoria" erro={errors.categoria} />
           <Text name="fabricante" register={register} placeholder="Fabricante ou Fornecedor" erro={errors.fabricante} />
-          <NumberInput name="valor" control={control} placeholder="Valor" erro={errors.valor} />
+          <Dinheiro name="valor" control={control} placeholder="Valor" erro={errors.valor} />
           <Text name="descricao" register={register} placeholder="Descrição" erro={errors.descricao} />
           <NumberInput
             name="qtdDisponivel"

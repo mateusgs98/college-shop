@@ -18,7 +18,7 @@ export default function ListagemProdutos() {
   );
 
   return (
-    <div className="px-10 py-6">
+    <div className="px-14 py-6">
       <div className="relative w-fit ml-auto">
         <input
           type="text"
@@ -42,9 +42,13 @@ export default function ListagemProdutos() {
           <h2 className="font-bold text-2xl mb-3 capitalize">{categoria[0].categoria}</h2>
           <div className="grid grid-cols-3 gap-x-10 mb-10 justify-items-center">
             {categoria.map((produto) => (
-              <Link to={`produto/${produto.id}`} key={produto.id}>
+              <Link to={`produto/${produto.id}`} key={produto.id} title="Ir para a página do produto">
                 <div className="rounded-lg shadow-xl border-2 border-black flex flex-col items-center justify-center w-[300px] h-fit p-5">
-                  <img src={`data:image/png;base64, ${produto.imagem}`} alt="imagem produto" className="w-24 mb-2" />
+                  <img
+                    src={`data:image/png;base64, ${produto.imagem}`}
+                    alt="imagem produto"
+                    className="w-24 h-24 aspect-square object-contain mix-blend-color-burn mb-2"
+                  />
                   <h2 className="font-bold text-2xl">{produto.nome}</h2>
                   <span className="text-lg">{formatadorMonetario.format(produto.valor)}</span>
                 </div>

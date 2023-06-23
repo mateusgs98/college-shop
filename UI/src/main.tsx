@@ -18,7 +18,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <RotasApp />
-      <Toaster position="top-right" />
+      <Toaster position="top-center" />
     </QueryClientProvider>
   </React.StrictMode>
 );

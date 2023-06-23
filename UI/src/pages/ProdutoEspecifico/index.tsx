@@ -33,9 +33,7 @@ export default function ProdutoEspecifico({ setProdutoCarrinho }: ProdutoEspecif
   function adicionarAoCarrinho() {
     if (produto) {
       setProdutoCarrinho(produto);
-      toast.success("Produto adicionado ao carrinho!", {
-        position: "top-center",
-      });
+      toast.success("Produto adicionado ao carrinho!");
     }
   }
 
@@ -56,11 +54,15 @@ export default function ProdutoEspecifico({ setProdutoCarrinho }: ProdutoEspecif
       {!isLoading && !isError && (
         <>
           <div className="px-8">
-            <h2 className="text-4xl font-bold mb-5 mt-16">{produto?.nome}</h2>
+            <h2 className="text-4xl font-bold mb-5 mt-6">{produto?.nome}</h2>
             <span className="text-2xl">Categoria: {produto?.categoria}</span>
           </div>
-          <div className="flex justify-between items-center mt-32">
-            <img src={`data:image/png;base64, ${produto?.imagem}`} alt="imagem produto" className="w-56" />
+          <div className="flex justify-between items-center mt-16">
+            <img
+              src={`data:image/png;base64, ${produto?.imagem}`}
+              alt="imagem produto"
+              className="w-56 h-56 aspect-square object-contain mix-blend-color-burn"
+            />
             <div className="flex flex-col gap-7">
               <span className="text-3xl max-w-sm">{produto?.descricao}</span>
               <span className="text-3xl">{produto?.qtdDisponivel} unidades restantes</span>

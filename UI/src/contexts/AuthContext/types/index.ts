@@ -5,6 +5,7 @@ export type AuthProviderProps = {
 };
 
 export type DadosAuthContext = {
+  idUsuario: number | null;
   autenticado: boolean;
   mensagemErro: string | null;
   handleLogin: (dadosLogin: DadosLoginUsuario) => Promise<void>;

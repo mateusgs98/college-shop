@@ -1,6 +1,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import React from "react";
+import { useMutation } from "@tanstack/react-query";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { z } from "zod";
 import CardForm from "../../components/Cards/CardForm";
@@ -8,10 +10,14 @@ import Button from "../../components/Comum/Button";
 import FileInput from "../../components/Comum/Input/FileInput";
 import NumberInput from "../../components/Comum/Input/NumberInput";
 import Text from "../../components/Comum/Input/Text";
+import { AuthContext } from "../../contexts/AuthContext/authContext";
 import { converterImagemParaBase64 } from "../../helpers/imagem";
+import { cadastrarProduto } from "../../services/Produto";
 import { CadastroProdutoForm } from "../../services/Produto/types";
 
 export default function CadastroProduto() {
+  const { idUsuario } = useContext(AuthContext);
+
   const schema = z.object({
     imagem: z.any().refine((arquivo) => arquivo?.length === 1, "Obrigatório"),
     nome: z.string().min(1, "Obrigatório"),
@@ -38,14 +44,47 @@ export default function CadastroProduto() {
     watch,
     setValue,
     control,
+    reset,
     formState: { errors },
   } = useForm<CadastroProdutoForm>({
     mode: "onBlur",
     resolver: zodResolver(schema),
   });
 
+  const mutation = useMutation({
+    mutationFn: cadastrarProduto,
+    onSuccess: (dadosResposta) => {
+      if (dadosResposta.data.value?.errors) {
+        toast.error("Não foi possível cadastrar o produto, tente novamente.");
+        return;
+      }
+
+      toast.success("Produto cadastrado com sucesso!");
+      reset({
+        categoria: "",
+        descricao: "",
+        fabricante: "",
+        imagem: undefined,
+        nome: "",
+        qtdDisponivel: "",
+        valor: "",
+      });
+    },
+    onError: () => {
+      toast.error("Não foi possível obter os produtos, tente novamente.");
+    },
+  });
+
   const handleEnvioForm = handleSubmit(async (dadosForm: CadastroProdutoForm) => {
     const imagemBase64 = await converterImagemParaBase64(dadosForm.imagem[0]);
+    const imagemBase64Formatada = imagemBase64.split("data:image/png;base64,")[1];
+    mutation.mutateAsync({
+      ...dadosForm,
+      imagem: imagemBase64Formatada,
+      idUsuario: idUsuario as number,
+      valor: Number(dadosForm.valor.replaceAll(".", "").replaceAll(",", ".")),
+      qtdDisponivel: Number(dadosForm.qtdDisponivel.replaceAll(".", "").replaceAll(",", ".")),
+    });
   });
 
   return (

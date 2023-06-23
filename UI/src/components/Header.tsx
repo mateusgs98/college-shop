@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { BiLogOut } from "react-icons/bi";
+import { AuthContext } from "../contexts/AuthContext/authContext";
 import { ProdutoResposta } from "../services/Produto/types";
 import SidebarCarrinho from "./SidebarCarrinho";
 
@@ -9,6 +10,8 @@ type HeaderProps = {
 };
 
 const Header = ({ produtosCarrinho }: HeaderProps) => {
+  const { handleLogout } = useContext(AuthContext);
+
   const [sidebarCarrinhoAberta, setSidebarCarrinhoAberta] = useState(false);
 
   return (
@@ -19,7 +22,7 @@ const Header = ({ produtosCarrinho }: HeaderProps) => {
           <button type="button" onClick={() => setSidebarCarrinhoAberta(true)} title="Visualizar carrinho">
             <AiOutlineShoppingCart className="w-7 h-7" fill="white" />
           </button>
-          <button type="button" onClick={() => localStorage.removeItem("token")} title="Sair">
+          <button type="button" onClick={handleLogout} title="Sair">
             <BiLogOut className="w-7 h-7" fill="white" />
           </button>
         </div>

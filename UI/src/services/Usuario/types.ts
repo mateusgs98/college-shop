@@ -40,6 +40,7 @@ export type DadosLoginUsuario = {
 export type LoginUsuarioResposta = {
   value: {
     token: string;
+    idUsuario: number;
   };
   statusCode: number;
 };

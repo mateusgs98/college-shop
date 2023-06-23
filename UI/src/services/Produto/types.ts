@@ -5,6 +5,16 @@ export type CadastroProdutoForm = {
   fabricante: string;
   valor: string;
   descricao: string;
+  qtdDisponivel: string;
+};
+
+type CadastroProdutoRequisicao = {
+  imagem: string;
+  nome: string;
+  categoria: string;
+  fabricante: string;
+  valor: number;
+  descricao: string;
   qtdDisponivel: number;
 };
 
@@ -28,3 +38,9 @@ export type ProdutoResposta = {
   fabricante: string;
   qtdDisponivel: number;
 };
+
+type IdUsuario = {
+  idUsuario: number;
+};
+
+export type CadastroProdutoRequest = CadastroProdutoRequisicao & IdUsuario;

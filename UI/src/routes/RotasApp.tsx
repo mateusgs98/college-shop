@@ -17,9 +17,9 @@ const RotasApp = () => {
   return (
     <BrowserRouter>
       <div className="relative flex flex-col min-h-screen justify-between">
-        <Header produtosCarrinho={produtosCarrinho} />
-        <div className="flex-1">
-          <AuthProvider>
+        <AuthProvider>
+          <Header produtosCarrinho={produtosCarrinho} />
+          <div className="flex-1">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/registrar" element={<Registrar />} />
@@ -28,9 +28,9 @@ const RotasApp = () => {
               <Route path="/realizar-compra" element={<RealizarCompra />} />
               <Route path="/produto/:id" element={<ProdutoEspecifico setProdutoCarrinho={setProdutosCarrinho} />} />
             </Routes>
-          </AuthProvider>
-        </div>
-        <Footer />
+          </div>
+          <Footer />
+        </AuthProvider>
       </div>
     </BrowserRouter>
   );
